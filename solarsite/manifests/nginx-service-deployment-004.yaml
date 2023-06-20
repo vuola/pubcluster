@@ -19,7 +19,7 @@ spec:
       type: ClusterIP
     ingress:
       enabled: true
-      hostname: nuc.local
+      hostname: localhost
       annotations:
         kubernetes.io/ingress.class: "traefik"
     replicaCount: 3
