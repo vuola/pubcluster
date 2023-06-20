@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: web
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: nginx
+  namespace: kube-system
+spec:
+  repo: https://charts.bitnami.com/bitnami
+  chart: nginx
+  targetNamespace: web
+  valuesContent: |-
+    fullnameOverride: "solarsite"
+    namespaceOverride: "web"
+    service:
+      type: ClusterIP
+    ingress:
+      enabled: true
+      hostname: nuc.local
+      annotations:
+        kubernetes.io/ingress.class: "traefik"
+    replicaCount: 3
+    cloneStaticSiteFromGit:
+      enabled: true
+      repository: "https://github.com/vuola/pubsource.git"
+      branch: "main"
+      interval: 60m
+    serverBlock: |-
+      server {
+        listen 0.0.0.0:8080;
+        server_name _;
+
+        root /app;
+
+        location / {
+          try_files $uri $uri/index.php;
+        }
+
+        location ~ \.php$ {
+          fastcgi_pass 127.0.0.1:9000;
+          fastcgi_index index.php;
+          include fastcgi.conf;
+        }  
+      }
+    sidecars:
+      - name: phpfpm
+        image: docker.io/bitnami/php-fpm:8.2.7-debian-11-r4
+        imagePullPolicy: "IfNotPresent"
+        ports:
+          - name: portname
+            containerPort: 9000
+        volumeMounts:
+          - name: staticsite
+            mountPath: /app
+    sidecarSingleProcessNamespace: true
+
+      
+
+
+
+
+
