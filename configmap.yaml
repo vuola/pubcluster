@@ -24,7 +24,7 @@ spec:
       hostname: localhost
       annotations:
         kubernetes.io/ingress.class: "traefik"
-    replicaCount: 3
+    replicaCount: 1
     cloneStaticSiteFromGit:
       enabled: true
       repository: "https://github.com/vuola/pubsource.git"
