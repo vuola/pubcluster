@@ -21,6 +21,7 @@ spec:
       type: ClusterIP
     ingress:
       enabled: true
+      hostname: radxa-a.local
       annotations:
         kubernetes.io/ingress.class: "traefik"
     replicaCount: 3
