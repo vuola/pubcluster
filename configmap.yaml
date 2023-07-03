@@ -18,10 +18,9 @@ spec:
     fullnameOverride: "solarsite"
     namespaceOverride: "web"
     service:
-      type: ClusterIP
+      type: LoadBalancer
     ingress:
       enabled: true
-      hostname: radxa-b.local
       annotations:
         kubernetes.io/ingress.class: "traefik"
     replicaCount: 3
