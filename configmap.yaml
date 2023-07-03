@@ -57,5 +57,4 @@ spec:
           - name: staticsite
             mountPath: /app
     sidecarSingleProcessNamespace: true
-
-      
+     
