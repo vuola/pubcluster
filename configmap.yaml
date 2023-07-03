@@ -58,4 +58,3 @@ spec:
             mountPath: /app
     sidecarSingleProcessNamespace: true
 
-     
