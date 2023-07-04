@@ -21,6 +21,7 @@ spec:
       type: LoadBalancer
     ingress:
       enabled: true
+      hostname: localhost
       annotations:
         kubernetes.io/ingress.class: "traefik"
     replicaCount: 3
