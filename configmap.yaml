@@ -18,7 +18,7 @@ spec:
     fullnameOverride: "solarsite"
     namespaceOverride: "web"
     service:
-      type: LoadBalancer
+      type: ClusterIP
     ingress:
       enabled: true
       hostname: localhost
