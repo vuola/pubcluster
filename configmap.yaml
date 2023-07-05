@@ -58,4 +58,18 @@ spec:
           - name: staticsite
             mountPath: /app
     sidecarSingleProcessNamespace: true
-
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: mariadb
+  namespace: kube-system
+spec:
+  repo: https://charts.bitnami.com/bitnami
+  chart: mariadb
+  targetNamespace: web
+  valuesContent: |-
+    auth:
+      rootPassword: Kn23&grill
+      username: vuola
+      password: 11SS&veggies
