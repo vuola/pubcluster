@@ -29,7 +29,7 @@ spec:
       enabled: true
       repository: "https://github.com/vuola/pubsource.git"
       branch: "main"
-      interval: 60m
+      interval: 15m
     serverBlock: |-
       server {
         listen 0.0.0.0:8080;
