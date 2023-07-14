@@ -70,8 +70,8 @@ spec:
   targetNamespace: web
   valuesContent: |-
     auth:
-      rootPassword: Kn23&grill
-      username: vuola
-      password: 11SS&veggies
+      database: "solarsite"
+      existingSecret: "database-keys"
+
       
     
