@@ -21,6 +21,7 @@ spec:
       type: ClusterIP
     ingress:
       enabled: true
+      selfSigned: true
       hostname: HOSTNAME.local
       annotations:
         kubernetes.io/ingress.class: "traefik"
