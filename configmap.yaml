@@ -73,6 +73,12 @@ spec:
     auth:
       database: "solarsite"
       existingSecret: "database-keys"
+    primary:
+      service:
+        type: nodePort
+        ports:
+          nodePort:
+          mysql: 3306
 
       
     
