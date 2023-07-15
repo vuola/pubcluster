@@ -25,6 +25,13 @@ spec:
       hostname: HOSTNAME.local
       annotations:
         kubernetes.io/ingress.class: "traefik"
+      extraPaths:
+      - path: /mariadb
+        backend:
+          service:
+            name: mariadb
+            port:
+              name: mysql
     replicaCount: 2
     cloneStaticSiteFromGit:
       enabled: true
