@@ -31,7 +31,7 @@ spec:
           service:
             name: mariadb
             port:
-              name: mysql
+              number: 3306
     replicaCount: 2
     cloneStaticSiteFromGit:
       enabled: true
