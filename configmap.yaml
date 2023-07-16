@@ -36,7 +36,7 @@ spec:
         listen 0.0.0.0:8080;
         server_name _;
 
-        root /app;
+        root /app/public;
 
         location / {
           try_files $uri $uri/index.php;
