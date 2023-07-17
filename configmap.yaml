@@ -48,10 +48,14 @@ spec:
           include fastcgi.conf;
         }  
       }
+    extraEnvVarsSecret: database-keys
     sidecars:
       - name: phpfpm
         image: docker.io/bitnami/php-fpm:8.2.7-debian-11-r4
         imagePullPolicy: "IfNotPresent"
+        envFrom:
+          - secretRef:
+              name: database-keys
         ports:
           - name: portname
             containerPort: 9000
