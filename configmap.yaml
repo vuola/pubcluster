@@ -47,9 +47,8 @@ spec:
               chown -R root:1001 . && \
               find . -type f -exec chmod 664 {} \; && \
               find . -type d -exec chmod 775 {} \; && \
-              chgrp -R 1001 storage bootstrap/cache && \
-              chmod -R ug+rwx storage bootstrap/cache 
-
+              chown -R 1001 ./storage ./bootstrap/cache && \
+              chmod -R ug+rwx ./storage ./bootstrap/cache
       gitSync:
         command:
           - /bin/bash
