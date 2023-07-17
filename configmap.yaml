@@ -73,6 +73,8 @@ spec:
         }  
       }
     extraEnvVarsSecret: laravel-keys
+    containerSecurityContext:
+      enabled: true
     sidecars:
       - name: phpfpm
         image: docker.io/bitnami/php-fpm:8.2.7-debian-11-r4
