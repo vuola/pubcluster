@@ -43,12 +43,9 @@ spec:
               rm -rf /app/* && \
               mv /tmp/app/* /app/ && \
               cp /app/.env.example /app/.env && \
-              cd /app && \
-              chown -R root:1001 . && \
-              find . -type f -exec chmod 664 {} \; && \
-              find . -type d -exec chmod 775 {} \; && \
-              chown -R 1001 ./storage ./bootstrap/cache && \
-              chmod -R ug+rwx ./storage ./bootstrap/cache
+              chown -R 1001:1001 /app && \
+              find /app -type f -exec chmod 644 {} \; && \
+              find /app -type d -exec chmod 755 {} \;
       gitSync:
         command:
           - /bin/bash
@@ -59,9 +56,9 @@ spec:
                 cd /app && \
                   git pull origin main && \
                   cp .env.example .env && \
-                  chown -R 1001 ./storage ./bootstrap/cache && \
-                  chmod -R ug+rwx ./storage ./bootstrap/cache
-
+                  chown -R 1001:1001 /app && \
+                  find /app -type f -exec chmod 644 {} \; && \
+                  find /app -type d -exec chmod 755 {} \;
                 sleep 15m
             done
     serverBlock: |-
