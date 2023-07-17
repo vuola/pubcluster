@@ -59,6 +59,9 @@ spec:
                 cd /app && \
                   git pull origin main && \
                   cp .env.example .env && \
+                  chown -R 1001 ./storage ./bootstrap/cache && \
+                  chmod -R ug+rwx ./storage ./bootstrap/cache
+
                 sleep 15m
             done
     serverBlock: |-
