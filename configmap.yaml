@@ -42,7 +42,10 @@ spec:
               shopt -s dotglob && \
               rm -rf /app/* && \
               mv /tmp/app/* /app/ && \
-              cp /app/.env.example /app/.env 
+              cp /app/.env.example /app/.env && \
+              chgrp -R 1001 storage /app/bootstrap/cache && \
+              chmod -R ug+rwx storage bootstrap/cache 
+
       gitSync:
         command:
           - /bin/bash
@@ -52,7 +55,10 @@ spec:
             while true; do
                 cd /app && \
                   git pull origin main && \
-                  cp .env.example .env
+                  cp .env.example .env && \
+                  chgrp -R 1001 storage /app/bootstrap/cache && \
+                  chmod -R ug+rwx storage bootstrap/cache 
+
                 sleep 15m
             done
     serverBlock: |-
