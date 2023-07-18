@@ -54,10 +54,7 @@ spec:
                 cd /app && \
                   git pull origin main && \
                   cp .env.example .env && \
-                  chown -R root:root /app && \
-                  find /app -type f -exec chmod 644 {} \; && \
-                  find /app -type d -exec chmod 755 {} \; && \
-                  chmod -R ug+rwx /app/storage/logs /app/bootstrap/cache
+                  chmod -R g+rwX /app
                 sleep 15m
             done
     serverBlock: |-
