@@ -44,6 +44,7 @@ spec:
               mv /tmp/app/* /app/ && \
               cp /app/.env.example /app/.env && \
               groupadd -g 1001 editors && \
+              usermod -aG editors 1001
               chown -R root:editors /app && \
               chmod -R g+rwX /app
       gitSync:
@@ -57,6 +58,7 @@ spec:
                   git pull origin main && \
                   cp .env.example .env && \
                   groupadd -g 1001 editors && \
+                  usermod -aG editors 1001
                   chown -R root:editors /app && \
                   chmod -R g+rwX /app
                 sleep 15m
