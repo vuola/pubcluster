@@ -45,7 +45,6 @@ spec:
               cp /app/.env.example /app/.env && \
               chmod -R g+rwX /app && \
               chmod -R o+rw /app/storage/logs /app/bootstrap/cache
-              usermod -aG root 1001
       gitSync:
         command:
           - /bin/bash
@@ -58,7 +57,6 @@ spec:
                   cp .env.example .env && \
                   chmod -R g+rwX /app
                   chmod -R o+rw /app/storage/logs /app/bootstrap/cache
-                  usermod -aG root 1001
                 sleep 15m
             done
     serverBlock: |-
