@@ -45,6 +45,7 @@ spec:
               cp /app/.env.example /app/.env && \
               chmod -R ug+rwX /app && \
               chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework
+              php artisan key:generate
       gitSync:
         command:
           - /bin/bash
