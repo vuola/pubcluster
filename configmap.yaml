@@ -43,6 +43,7 @@ spec:
               rm -rf /app/* && \
               mv /tmp/app/* /app/ && \
               cp /app/.env.example /app/.env && \
+              sudo useradd -u 1001 editor
               groupadd -g 1001 editors && \
               chown -R root:editors /app && \
               chmod -R go+rwX /app
