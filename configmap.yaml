@@ -48,7 +48,7 @@ spec:
               mv /tmp/app/* /app/ && \
               cp /app/.env.example /app/.env && \
               chmod -R ug+rwX /app && \
-              chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework/sessions
+              chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework
       gitSync:
         command:
           - /bin/bash
@@ -60,7 +60,7 @@ spec:
                   git pull origin main && \
                   cp .env.example .env && \
                   chmod -R ug+rwX /app && \
-                  chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework/sessions
+                  chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework
                 sleep 15m
             done
     serverBlock: |-
