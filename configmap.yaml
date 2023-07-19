@@ -108,6 +108,3 @@ spec:
         ports:
           nodePort:
           mysql: 3306
-
-      
-    
