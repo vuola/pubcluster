@@ -43,8 +43,6 @@ spec:
               rm -rf /app/* && \
               mv /tmp/app/* /app/ && \
               cp /app/.env.example /app/.env && \
-              useradd -u 1001 editor
-              groupadd -g 1001 editors && \
               chown -R root:editors /app && \
               chmod -R go+rwX /app
       gitSync:
@@ -57,7 +55,6 @@ spec:
                 cd /app && \
                   git pull origin main && \
                   cp .env.example .env && \
-                  groupadd -g 1001 editors && \
                   chown -R root:editors /app && \
                   chmod -R go+rwX /app
                 sleep 15m
