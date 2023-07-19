@@ -26,15 +26,41 @@ spec:
       annotations:
         kubernetes.io/ingress.class: "traefik"
     replicaCount: 1
-    containerSecurityContext:
-      enabled: true
-    runAsUser: editor
-    runAsNonRoot: true
     cloneStaticSiteFromGit:
       enabled: true
       repository: "https://github.com/vuola/pubsource.git"
       branch: "main"
       interval: 15m
+      gitClone:
+        command:
+          - /bin/bash
+          - -ec
+          - |
+            [[ -f "/opt/bitnami/scripts/git/entrypoint.sh" ]] && source "/opt/bitnami/scripts/git/entrypoint.sh"
+            git clone https://github.com/vuola/pubsource.git --branch main /tmp/app
+            [[ "$?" -eq 0 ]] && \
+              shopt -s dotglob && \
+              rm -rf /app/* && \
+              mv /tmp/app/* /app/ && \
+              cp /app/.env.example /app/.env && \
+              groupadd -g 1001 editors && \
+              chown -R root:editors /app && \
+              chmod -R go+rwX /app
+      gitSync:
+        command:
+          - /bin/bash
+          - -ec
+          - |
+            [[ -f "/opt/bitnami/scripts/git/entrypoint.sh" ]] && source "/opt/bitnami/scripts/git/entrypoint.sh"
+            while true; do
+                cd /app && \
+                  git pull origin main && \
+                  cp .env.example .env && \
+                  groupadd -g 1001 editors && \
+                  chown -R root:editors /app && \
+                  chmod -R go+rwX /app
+                sleep 15m
+            done
     serverBlock: |-
       server {
         listen 0.0.0.0:8080;
