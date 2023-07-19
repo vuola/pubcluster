@@ -28,7 +28,7 @@ spec:
     replicaCount: 1
     containerSecurityContext:
       enabled: true
-    runAsNonRoot: true
+      runAsNonRoot: false
     cloneStaticSiteFromGit:
       enabled: true
       repository: "https://github.com/vuola/pubsource.git"
