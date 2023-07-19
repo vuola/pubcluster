@@ -43,7 +43,6 @@ spec:
               rm -rf /app/* && \
               mv /tmp/app/* /app/ && \
               cp /app/.env.example /app/.env && \
-              chown -R root:editors /app && \
               chmod -R go+rwX /app
       gitSync:
         command:
@@ -55,7 +54,6 @@ spec:
                 cd /app && \
                   git pull origin main && \
                   cp .env.example .env && \
-                  chown -R root:editors /app && \
                   chmod -R go+rwX /app
                 sleep 15m
             done
