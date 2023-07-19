@@ -28,7 +28,6 @@ spec:
     replicaCount: 1
     containerSecurityContext:
       enabled: true
-    runAsUser: editor
     runAsNonRoot: true
     cloneStaticSiteFromGit:
       enabled: true
