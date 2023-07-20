@@ -84,6 +84,9 @@ spec:
       - name: secret-volume
         secret:
           secretName: laravel-keys
+    extraVolumeMounts:
+      - name: secret-volume
+        mountPath: "/secret"
     sidecars:
       - name: phpfpm
         image: docker.io/bitnami/php-fpm:8.2.7-debian-11-r4
