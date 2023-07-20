@@ -94,7 +94,7 @@ spec:
             periodSeconds: 5
         command:
           - /bin/bash
-          - -ec
+          - -exc
           - |
             cd /app && \
             cat << 'EOF' > setup_laravel.sh \
