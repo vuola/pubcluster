@@ -80,7 +80,7 @@ spec:
         }  
       }
     extraEnvVarsSecret: laravel-keys
-    extraVolumeMounts:
+    extraVolumes:
       - name: secret-volume
         secret:
           secretName: laravel-keys
