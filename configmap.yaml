@@ -44,7 +44,10 @@ spec:
               mv /tmp/app/* /app/ && \
               cp /app/.env.example /app/.env && \
               chmod -R ug+rwX /app && \
-              chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework
+              chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework && \
+              touch /app/setup_laravel.sh && \
+              echo "php artisan key:generate" >> /app/setup_laravel.sh && \
+              chmod +x /app/setup_laravel.sh
       gitSync:
         command:
           - /bin/bash
@@ -89,17 +92,9 @@ spec:
             mountPath: /app
         readinessProbe:
             exec:
-              command: ["sh", "-c", "/app/setup_laravel.sh"]
-            initialDelaySeconds: 15
+              command: ["sh", "-c", "/app/setup_laravel.sh", "&&", "rm /app/setup_laravel.sh"]
+            initialDelaySeconds: 10
             periodSeconds: 5
-        command:
-          - /bin/bash
-          - -ec
-          - |
-            cd /app && \
-            touch setup_laravel.sh && \
-            echo "php artisan key:generate" >> setup_laravel.sh && \
-            chmod +x setup_laravel.sh
     sidecarSingleProcessNamespace: true
 ---
 apiVersion: helm.cattle.io/v1
