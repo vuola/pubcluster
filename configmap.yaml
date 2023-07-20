@@ -56,7 +56,6 @@ spec:
             [[ -f "/opt/bitnami/scripts/git/entrypoint.sh" ]] && source "/opt/bitnami/scripts/git/entrypoint.sh"
             while true; do
                 cd /app && \
-                  rm -f setup_laravel.sh && \
                   git pull origin main && \
                   cp .env.example .env && \
                   chmod -R ug+rwX /app && \
