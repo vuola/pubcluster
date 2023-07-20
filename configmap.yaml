@@ -47,7 +47,7 @@ spec:
               chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework && \
               touch /app/setup_laravel.sh && \
               echo "php artisan key:generate" >> /app/setup_laravel.sh && \
-              chmod +x /app/setup_laravel.sh
+              chmod ug+x /app/setup_laravel.sh
       gitSync:
         command:
           - /bin/bash
