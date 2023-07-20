@@ -142,5 +142,6 @@ spec:
             secretName: laravel-keys
       extraVolumeMounts:
         - name: secret-volume
-          mountPath: "/secret"          
+          mountPath: "/secret"
+                    
 
