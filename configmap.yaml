@@ -130,6 +130,7 @@ spec:
         replicator: /secret/mariadb-replication-password
     primary:
       containerSecurityContext:
+        allowPrivilegeEscalation: true
         privileged: true
       service:
         type: NodePort
@@ -143,5 +144,5 @@ spec:
       extraVolumeMounts:
         - name: secret-volume
           mountPath: "/secret"
-                    
+
 
