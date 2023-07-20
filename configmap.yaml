@@ -94,7 +94,7 @@ spec:
             periodSeconds: 5
         command:
           - /bin/bash
-          - -exc
+          - -ec
           - |
             cd /app && \
             touch setup_laravel.sh && \
