@@ -123,10 +123,22 @@ spec:
       database: "laravel"
       username: "laravel-process"
       existingSecret: "laravel-keys"
+      usePasswordFiles: true
+      customPasswordFiles:
+        root: /secret/mariadb-root-password
+        user: /secret/mariadb-password
+        replicator: /secret/mariadb-replication-password
+    primary:
       service:
-        type: NodePort
+        type: nodePort
         ports:
           nodePort:
           mysql: 3306
-          
+      extraVolumes:
+        - name: secret-volume
+          secret:
+            secretName: laravel-keys
+      extraVolumeMounts:
+        - name: secret-volume
+          mountPath: "/secret"          
 
