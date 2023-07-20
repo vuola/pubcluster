@@ -87,6 +87,20 @@ spec:
         volumeMounts:
           - name: staticsite
             mountPath: /app
+        readinessProbe:
+            exec:
+              command: ["sh", "-c", "/app/setup_laravel.sh"]
+            initialDelaySeconds: 15
+            periodSeconds: 5
+        command:
+          - /bin/bash
+          - -ec
+          - |
+            cd /app && \
+            cat << 'EOF' > setup_laravel.sh \
+            php artisan key:generate \
+            EOF && \
+            chmod +x setup_laravel.sh
     sidecarSingleProcessNamespace: true
 ---
 apiVersion: helm.cattle.io/v1
