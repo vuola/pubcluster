@@ -115,9 +115,9 @@ spec:
   targetNamespace: web
   valuesContent: |-
     auth:
-      database: "solarsite"
+      database: "laravel"
+      username: "laravel-process"
       existingSecret: "laravel-keys"
-    primary:
       service:
         type: NodePort
         ports:
