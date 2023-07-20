@@ -97,9 +97,8 @@ spec:
           - -exc
           - |
             cd /app && \
-            cat << 'EOF' > setup_laravel.sh \
-            php artisan key:generate \
-            EOF && \
+            touch setup_laravel.sh && \
+            echo "php artisan key:generate" >> setup_laravel.sh && \
             chmod +x setup_laravel.sh
     sidecarSingleProcessNamespace: true
 ---
