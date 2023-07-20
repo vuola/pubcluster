@@ -130,7 +130,7 @@ spec:
         replicator: /secret/mariadb-replication-password
     primary:
       service:
-        type: nodePort
+        type: NodePort
         ports:
           nodePort:
           mysql: 3306
