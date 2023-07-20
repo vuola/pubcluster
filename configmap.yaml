@@ -121,7 +121,7 @@ spec:
   valuesContent: |-
     auth:
       database: "laravel"
-      username: "laravel-process"
+      username: "laravelprocess"
       existingSecret: "laravel-keys"
       usePasswordFiles: true
       customPasswordFiles:
