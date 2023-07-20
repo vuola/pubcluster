@@ -116,7 +116,7 @@ spec:
   valuesContent: |-
     auth:
       database: "solarsite"
-      existingSecret: "database-keys"
+      existingSecret: "laravel-keys"
     primary:
       service:
         type: NodePort
