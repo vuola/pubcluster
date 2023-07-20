@@ -130,8 +130,7 @@ spec:
         replicator: /secret/mariadb-replication-password
     primary:
       containerSecurityContext:
-        allowPrivilegeEscalation: true
-        privileged: true
+        runAsNonRoot: false
       service:
         type: NodePort
         ports:
