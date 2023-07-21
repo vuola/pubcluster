@@ -17,10 +17,6 @@ spec:
   valuesContent: |-
     fullnameOverride: "solarsite"
     namespaceOverride: "web"
-    podSecurityContext:
-      enabled: true
-      runAsUser: 1001
-      fsGroup: 1001
     service:
       type: ClusterIP
     ingress:
