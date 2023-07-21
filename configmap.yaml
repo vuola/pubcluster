@@ -44,7 +44,7 @@ spec:
               mv /tmp/app/* /app/ && \
               cp /app/.env.example /app/.env && \
               chmod -R ug+rwX /app && \
-              chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework && \
+              chmod -R g+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework && \
               touch /app/setup_laravel.sh && \
               echo "php artisan key:generate" >> /app/setup_laravel.sh && \
               chmod ug+x /app/setup_laravel.sh
@@ -59,7 +59,7 @@ spec:
                   git pull origin main && \
                   cp .env.example .env && \
                   chmod -R ug+rwX /app && \
-                  chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework
+                  chmod -R g+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework
                 sleep 15m
             done
     serverBlock: |-
