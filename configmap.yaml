@@ -141,5 +141,3 @@ spec:
       extraVolumeMounts:
         - name: secret-volume
           mountPath: "/secret"
-
-
