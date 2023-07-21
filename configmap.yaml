@@ -129,8 +129,6 @@ spec:
         user: /secret/mariadb-password
         replicator: /secret/mariadb-replication-password
     primary:
-      containerSecurityContext:
-        runAsNonRoot: false
       service:
         type: NodePort
         ports:
