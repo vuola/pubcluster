@@ -55,7 +55,8 @@ spec:
                 cd /app && \
                   git pull origin main && \
                   cp .env.example .env && \
-                  chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework
+                  chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework && \
+                  chmod ug+x /app/setup_laravel.sh
                 sleep 15m
             done
     serverBlock: |-
