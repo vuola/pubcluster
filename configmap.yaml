@@ -104,8 +104,7 @@ spec:
               command: ["sh", "-c", "/app/setup_laravel.sh"]
             initialDelaySeconds: 10
             periodSeconds: 5
-    sidecarSingleProcessNamespace: true
-    
+    sidecarSingleProcessNamespace: true    
 ---
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
