@@ -76,11 +76,6 @@ spec:
           include fastcgi.conf;
         }  
       }
-    extraEnvVars:
-      - name: NODE_NAME
-        valueFrom:
-          fieldRef:
-            fieldPath: spec.nodeName
     extraEnvVarsSecret: laravel-keys
     extraVolumes:
       - name: secret-volume
