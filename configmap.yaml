@@ -99,6 +99,8 @@ spec:
         volumeMounts:
           - name: staticsite
             mountPath: /app
+          - name: secret-volume
+            mountPath: /secret
         readinessProbe:
             exec:
               command: ["sh", "-c", "/app/setup_laravel.sh"]
