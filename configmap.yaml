@@ -101,13 +101,8 @@ spec:
             mountPath: /app
           - name: secret-volume
             mountPath: /secret
-        readinessProbe:
-            exec:
-              command: ["sh", "-c", "/app/setup_laravel.sh"]
-            initialDelaySeconds: 10
-            periodSeconds: 5
     sidecarSingleProcessNamespace: true
-    
+
 ---
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
