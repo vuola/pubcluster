@@ -45,7 +45,6 @@ spec:
               cp /app/.env.example /app/.env && \
               chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework && \
               chmod ug+x /app/setup_laravel.sh
-              touch /ready
       gitSync:
         command:
           - /bin/bash
@@ -56,6 +55,7 @@ spec:
                 cd /app && \
                   git pull origin main && \
                   chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework && \
+                  chmod ug+x /app/setup_laravel.sh
                 sleep 15m
             done
     serverBlock: |-
@@ -75,23 +75,10 @@ spec:
           include fastcgi.conf;
         }  
       }
-    extraEnvVarsSecret: laravel-keys
-    extraVolumes:
-      - name: secret-volume
-        secret:
-          secretName: laravel-keys
-    extraVolumeMounts:
-      - name: secret-volume
-        mountPath: "/secret"
     sidecars:
       - name: phpfpm
         image: docker.io/bitnami/php-fpm:8.2.7-debian-11-r4
         imagePullPolicy: "IfNotPresent"
-        command:
-          - /bin/bash
-          - -ec
-          - |
-            ./setup_laravel.sh
         env:
           - name: NODE_NAME
             valueFrom:
@@ -105,17 +92,11 @@ spec:
             mountPath: /app
           - name: secret-volume
             mountPath: /secret
-    initContainers:
-      - name: setup_laravel
-        image: docker.io/bitnami/php-fpm:8.2.7-debian-11-r4
-        command:
-          - /bin/bash
-          - -ec
-          - |
-            ./setup_laravel.sh
-        volumeMounts:
-          - name: staticsite
-            mountPath: /app
+        readinessProbe:
+            exec:
+              command: ["sh", "-c", "/app/setup_laravel.sh"]
+            initialDelaySeconds: 10
+            periodSeconds: 3600
     sidecarSingleProcessNamespace: true
 ---
 apiVersion: helm.cattle.io/v1

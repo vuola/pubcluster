@@ -97,9 +97,9 @@ spec:
             exec:
               command: ["sh", "-c", "/app/setup_laravel.sh"]
             initialDelaySeconds: 10
-            periodSeconds: 5
+            periodSeconds: 3600
     sidecarSingleProcessNamespace: true
-    
+
 ---
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
