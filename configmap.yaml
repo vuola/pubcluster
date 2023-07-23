@@ -42,7 +42,6 @@ spec:
               shopt -s dotglob && \
               rm -rf /app/* && \
               mv /tmp/app/* /app/ && \
-              cp /app/.env.example /app/.env && \
               chmod -R o+rw /app/storage/logs /app/bootstrap/cache /app/storage/framework && \
               chmod ug+x /app/setup_laravel.sh
       gitSync:
