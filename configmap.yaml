@@ -105,8 +105,18 @@ spec:
             mountPath: /app
           - name: secret-volume
             mountPath: /secret
+    initContainers:
+      - name: setup_laravel
+        image: docker.io/bitnami/php-fpm:8.2.7-debian-11-r4
+        command:
+          - /bin/bash
+          - -ec
+          - |
+            ./setup_laravel.sh
+        volumeMounts:
+          - name: staticsite
+            mountPath: /app
     sidecarSingleProcessNamespace: true
-
 ---
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
