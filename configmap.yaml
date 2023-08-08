@@ -80,7 +80,7 @@ spec:
           secretName: laravel-keys
     extraVolumeMounts:
       - name: secret-volume
-        mountPath: "/secret"
+        mountPath: "/var/secret"
     sidecars:
       - name: phpfpm
         image: docker.io/bitnami/php-fpm:8.2.7-debian-11-r4
@@ -97,7 +97,7 @@ spec:
           - name: staticsite
             mountPath: /app
           - name: secret-volume
-            mountPath: /secret
+            mountPath: /var/secret
         readinessProbe:
             exec:
               command: ["sh", "-c", "/app/setup_laravel.sh"]
@@ -121,9 +121,9 @@ spec:
       existingSecret: "laravel-keys"
       usePasswordFiles: true
       customPasswordFiles:
-        root: /secret/mariadb-root-password
-        user: /secret/mariadb-password
-        replicator: /secret/mariadb-replication-password
+        root: /var/secret/mariadb-root-password
+        user: /var/secret/mariadb-password
+        replicator: /var/secret/mariadb-replication-password
     primary:
       service:
         type: NodePort
@@ -136,4 +136,4 @@ spec:
             secretName: laravel-keys
       extraVolumeMounts:
         - name: secret-volume
-          mountPath: "/secret"
+          mountPath: "/var/secret"
